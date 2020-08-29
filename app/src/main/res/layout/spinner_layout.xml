@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/customSpinnerItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/customSpinnerIcon"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgSpinnerLayout"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="@dimen/dimen_medium"
+            android:scaleType="fitXY"
+            tools:src="@drawable/icon_female" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtSpinnerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_medium"
+            tools:text="Item 1" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/customSpinnerIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/dimen_medium"
+        android:src="@drawable/ic_drop_down_circle" />
+</RelativeLayout>

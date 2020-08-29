@@ -33,20 +33,17 @@ abstract class BaseFragment <T: ViewDataBinding, VM: BaseViewModel> : Fragment()
     private var progressDialog: ProgressDialog? = null
 
     protected lateinit var binding: T
-    protected lateinit var viewModel: VM
+    protected abstract val viewModel: VM
 
     //region Abstract Methods
-    abstract fun getViewModel(): Class<VM>
     abstract fun getFragmentView() : Int
     //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = container.inflate(getFragmentView(), false)
-        viewModel = ViewModelProvider(this).get(getViewModel())
         binding.apply {
             lifecycleOwner = this@BaseFragment
         }
-        binding.setVariable(BR.viewModel, viewModel)
         return binding.root
     }
 

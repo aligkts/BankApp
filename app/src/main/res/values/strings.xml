@@ -4,6 +4,7 @@
     //Error
     <string name="error_network_connection">Error network connection</string>
     <string name="error_dialog_title">Error</string>
+    <string name="fill_all_fields">Please fill all fields</string>
 
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
@@ -13,4 +14,21 @@
     <string name="password">Password</string>
     <string name="email">E-mail</string>
     <string name="payday_banking">Payday Banking</string>
+    <string name="hide_text">HIDE</string>
+    <string name="show_text">SHOW</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="customer_id">Customer ID: %s</string>
+    <string name="gender">Gender: %s</string>
+    <string name="age">Age: %s</string>
+    <string name="iban">Iban: %s</string>
+    <string name="type">Type: %s</string>
+    <string name="create_date">Create Date: %s</string>
+    <string name="accounts">Accounts</string>
+    <string name="bottom_menu_item_dashboard">Dashboard</string>
+    <string name="bottom_menu_item_account_list">Account List</string>
+
+
 </resources>

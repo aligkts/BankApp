@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:drawablePadding="8dp"
             android:text="@string/email"
             android:textColor="@color/colorWhite"
@@ -42,7 +43,20 @@
             app:layout_constraintTop_toBottomOf="@id/img_bank" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- <com.aligkts.bankapp.ui.base.custom.PasswordEditText
+            android:id="@+id/text_input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="48dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_bank"/>-->
+
+       <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,10 +126,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:onClick="@{(v) -> viewModel.delegate.navigateHomePage()}"
+            android:onClick="@{() -> viewModel.login()}"
             android:text="@string/sign_in"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textColor="@color/buttonDefaultTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,6 +147,7 @@
             android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textColor="@color/buttonDefaultTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />

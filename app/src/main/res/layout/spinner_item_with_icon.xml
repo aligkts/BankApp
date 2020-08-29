@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDropDownLayout"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:padding="@dimen/dimen_medium"
+        android:scaleType="fitXY"
+        tools:src="@drawable/icon_female" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtDropDownLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_medium"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="20sp"
+        tools:text="Item 1" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,8 +1,11 @@
 package com.aligkts.bankapp.data.model.response
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class LoginResponse(
     @SerializedName("dob")
     val dob: String?,
@@ -20,4 +23,4 @@ data class LoginResponse(
     val password: String?,
     @SerializedName("phone")
     val phone: String?
-)
+): Parcelable

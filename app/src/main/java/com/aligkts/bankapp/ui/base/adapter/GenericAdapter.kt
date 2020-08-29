@@ -1,32 +1,58 @@
 package com.aligkts.bankapp.ui.base.adapter
 
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
-import com.aligkts.bankapp.ui.utils.extension.inflate
-import com.aligkts.bankapp.ui.utils.extension.listen
 
-/**
- * Created by Ali Göktaş on 28,August,2020
- */
+class GenericAdapter<T : BaseRecyclerviewItem>(@LayoutRes val layoutId: Int) :
+    RecyclerView.Adapter<GenericAdapter.GenericViewHolder<T>>() {
 
-class GenericAdapter<T : RecyclerViewItem>(val items: List<T>,
-                                                                                                  val callback : (GenericViewHolder, T)-> Unit,
-                                                                                                  val onClick : ((T) -> Unit)?) : RecyclerView.Adapter<GenericAdapter.GenericViewHolder>() {
+    private val items = mutableListOf<T>()
+    private var inflater: LayoutInflater? = null
+    private var onListItemViewClickListener: OnListItemViewClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder {
-        return GenericViewHolder(
-            parent.inflate(viewType, false)
-        ).listen { position, type ->
-            onClick?.invoke(items[position])
-        }
+    fun addItems(items: List<T>) {
+        this.items.clear()
+        this.items.addAll(items)
+        notifyDataSetChanged()
     }
 
-    override fun getItemCount() = items.size
+    fun setOnListItemViewClickListener(onListItemViewClickListener: OnListItemViewClickListener?){
+        this.onListItemViewClickListener = onListItemViewClickListener
+    }
 
-    override fun getItemViewType(position: Int) = items[position].resId
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder<T> {
+        val layoutInflater = inflater ?: LayoutInflater.from(parent.context)
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(layoutInflater, layoutId, parent, false)
+        return GenericViewHolder(binding)
+    }
 
-    override fun onBindViewHolder(holder: GenericViewHolder, position: Int) = callback.invoke(holder, items[position])
+    override fun getItemCount(): Int = items.size
 
-    class GenericViewHolder(val binding : ViewDataBinding): RecyclerView.ViewHolder(binding.root)
+    override fun onBindViewHolder(holder: GenericViewHolder<T>, position: Int) {
+        val itemViewModel = items[position]
+        itemViewModel.adapterPosition = position
+        onListItemViewClickListener?.let { itemViewModel.onListItemViewClickListener = it }
+        holder.bind(itemViewModel)
+    }
+
+
+    class GenericViewHolder<T : BaseRecyclerviewItem>(private val binding: ViewDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(itemViewModel: T) {
+            binding.setVariable(BR.item, itemViewModel)
+            binding.executePendingBindings()
+        }
+
+    }
+
+    interface OnListItemViewClickListener{
+        fun onClick(view: View, position: Int)
+    }
 }

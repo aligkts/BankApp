@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorBackground">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_bank"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="@string/payday_banking"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorLightText"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

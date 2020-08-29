@@ -7,4 +7,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeColor">@color/primaryTextColor</item>
+        <item name="boxStrokeErrorColor">@color/primaryTextColor</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style parent="@android:style/Widget.Spinner" name="SpinnerWithoutArrow">
+        <item name="android:background">@android:drawable/edit_text</item>
+    </style>
+
 </resources>
