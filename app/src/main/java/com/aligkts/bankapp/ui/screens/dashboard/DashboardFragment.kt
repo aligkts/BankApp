@@ -8,7 +8,6 @@ import com.aligkts.bankapp.data.model.response.AccountResponseItem
 import com.aligkts.bankapp.data.model.response.LoginResponse
 import com.aligkts.bankapp.data.util.observeNonNull
 import com.aligkts.bankapp.databinding.FragmentDashboardBinding
-import com.aligkts.bankapp.databinding.RecyclerviewItemAccountBinding
 import com.aligkts.bankapp.ui.base.adapter.GenericAdapter
 import com.aligkts.bankapp.ui.base.fragment.BaseFragment
 import com.aligkts.bankapp.ui.screens.login.LoginFragment.Companion.LOGIN_RESPONSE
@@ -42,14 +41,11 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     }
 
     private fun setupAccountRecyclerview(accounts: List<AccountResponseItem>) {
-        val genericAdapter = GenericAdapter<AccountResponseItem>(R.layout.recyclerview_item_account)
-
-        genericAdapter.setOnListItemViewClickListener(object : GenericAdapter.OnListItemViewClickListener{
-            override fun onClick(view: View, position: Int) {
-                //TODO navigate account detail with accounts.get(position)
-            }
-        })
-        genericAdapter.addItems(accounts)
+        val genericAdapter
+                = GenericAdapter(R.layout.recyclerview_item_account, accounts as ArrayList<AccountResponseItem>)
+        { holder, clickedAcccountItem ->
+            Toast.makeText(requireContext(), clickedAcccountItem.iban, Toast.LENGTH_SHORT).show()
+        }
         binding.rvAccounts.adapter = genericAdapter
     }
 

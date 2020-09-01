@@ -1,7 +1,6 @@
 package com.aligkts.bankapp.ui.base.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -9,22 +8,12 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 
-class GenericAdapter<T : BaseRecyclerviewItem>(@LayoutRes val layoutId: Int) :
+class GenericAdapter<T : BaseRecyclerviewItem>(@LayoutRes val layoutId: Int,
+                                               val items: ArrayList<T>,
+                                               val callback : (GenericViewHolder<T>, T)-> Unit) :
     RecyclerView.Adapter<GenericAdapter.GenericViewHolder<T>>() {
 
-    private val items = mutableListOf<T>()
     private var inflater: LayoutInflater? = null
-    private var onListItemViewClickListener: OnListItemViewClickListener? = null
-
-    fun addItems(items: List<T>) {
-        this.items.clear()
-        this.items.addAll(items)
-        notifyDataSetChanged()
-    }
-
-    fun setOnListItemViewClickListener(onListItemViewClickListener: OnListItemViewClickListener?){
-        this.onListItemViewClickListener = onListItemViewClickListener
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder<T> {
         val layoutInflater = inflater ?: LayoutInflater.from(parent.context)
@@ -37,8 +26,10 @@ class GenericAdapter<T : BaseRecyclerviewItem>(@LayoutRes val layoutId: Int) :
     override fun onBindViewHolder(holder: GenericViewHolder<T>, position: Int) {
         val itemViewModel = items[position]
         itemViewModel.adapterPosition = position
-        onListItemViewClickListener?.let { itemViewModel.onListItemViewClickListener = it }
         holder.bind(itemViewModel)
+        holder.itemView.setOnClickListener {
+            callback.invoke(holder, items[position])
+        }
     }
 
 
@@ -50,9 +41,5 @@ class GenericAdapter<T : BaseRecyclerviewItem>(@LayoutRes val layoutId: Int) :
             binding.executePendingBindings()
         }
 
-    }
-
-    interface OnListItemViewClickListener{
-        fun onClick(view: View, position: Int)
     }
 }
